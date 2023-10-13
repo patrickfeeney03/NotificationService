@@ -1,7 +1,5 @@
 package ie.atu.notificationservice;
 
-
-import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +8,9 @@ import java.util.Map;
 
 @RestController
 public class NotificationController {
-    @GetMapping("/notify")
+    @PostMapping("/notify")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Map<String, String> handleNotificationRequest(UserDetails userDetails) {
-        System.out.println("NOTIFICATION CONTROLLER RAN.");
+    public Map<String, String> handleNotificationRequest(@RequestBody UserDetails userDetails) {
         Map<String, String> notificationMessage = new HashMap<>();
         notificationMessage.put("message", "User " + userDetails.getName() + " (" + userDetails.getEmail() +
                 ") has been successfully registered.");
